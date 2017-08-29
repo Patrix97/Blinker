@@ -11,5 +11,5 @@
 
 #include <stdio.h>
 
-void set_dmx(int channel, uint8_t value, uint8_t* universe);
+uint8_t* set_dmx(int channel, uint8_t value, uint8_t* universe);
 #endif /* dmx_h */
