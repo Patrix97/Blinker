@@ -49,7 +49,7 @@ int main(int argc, const char * argv[]) {
         printf("MENU\n"
                "s: Send DMX\n"
                "q: Quit\n");
-        scanf("%s", &menu);
+        scanf("%s", menu);
         
         switch (menu[0]) {
             case 's':
