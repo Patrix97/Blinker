@@ -5,7 +5,7 @@ LDFLAGS =
 
 SOURCES = ArrayList.c main.c arduino-serial-lib.c dmx.c CSV_reader.c
 OBJECTS = $(SOURCES:.c=.o)
-EXECUTABLE = prog
+EXECUTABLE = Blinker
 
 all: $(SOURCES) $(EXECUTABLE)
 
