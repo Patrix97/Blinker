@@ -24,26 +24,15 @@ int init(){
 }
 
 int main(int argc, const char * argv[]) {
-    //int fd = init();
-    /*
+    int fd = init();
+    
     uint8_t* universe = calloc(512, sizeof(uint8_t));
     int channel;
     uint8_t value;
     int i;
+
     
-  
-    
-                printf("Please enter the channel, where you want to set or change a value (Between 1 and 512): ");
-                scanf("%i", &channel);
-                printf("Please enter a value between 0 and 255: ");
-                scanf("%hhu", &value);
-                
-                set_dmx(channel, value, universe);
-                for(i = 0; i < 512; i++){
-                    printf("Send channel %i\n", i+1);
-                    serialport_writebyte(fd, universe[i]);
-                }*/
-    
+    /*
     FILE* stream = fopen("/Users/patrickmarx/Desktop/DMX/ODMX/OpenDMX/OpenDMX/64B.csv", "r");
     
     char line[1024];
@@ -53,6 +42,35 @@ int main(int argc, const char * argv[]) {
         printf("Field 3 would be %s\n", get_field(tmp, 1));
         // NOTE strtok clobbers tmp
         free(tmp);
+    }*/
+    
+    char* menu = malloc(sizeof(char));
+    while(1){
+        printf("MENU\n"
+               "s: Send DMX\n"
+               "q: Quit\n");
+        scanf("%s", &menu);
+        
+        switch (menu[0]) {
+            case 's':
+                printf("Please enter the channel, where you want to set or change a value (Between 1 and 512): ");
+                scanf("%i", &channel);
+                printf("Please enter a value between 0 and 255: ");
+                scanf("%hhu", &value);
+                
+                set_dmx(channel, value, universe);
+                break;
+            case 'q':
+                return 0;
+                
+            default:
+                
+                break;
+        }
+        for(i = 0; i < 512; i++){
+            printf("Send channel %i\n", i+1);
+            serialport_writebyte(fd, universe[i]);
+        }
     }
     
         return 0;
