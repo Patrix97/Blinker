@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-int row_count;
 
 
 const char* get_field(char* line, int number);
