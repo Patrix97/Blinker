@@ -58,7 +58,10 @@ int main(int argc, const char * argv[]) {
                 printf("Please enter a value between 0 and 255: ");
                 scanf("%hhu", &value);
                 
-                set_dmx(channel, value, universe);
+                universe = set_dmx(channel, value, universe);
+                for(i = 0; i < 512; i++){
+                    printf("%hhu\n", universe[i]);
+                }
                 break;
             case 'q':
                 return 0;
