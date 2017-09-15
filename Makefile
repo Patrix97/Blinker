@@ -3,7 +3,7 @@ CFLAGS = -c -Wall -pedantic
 
 LDFLAGS =
 
-SOURCES = ArrayList.c main.c arduino-serial-lib.c dmx.c CSV_reader.c
+SOURCES = ArrayList.c main.c arduino-serial-lib.c dmx.c CSV_reader.c FileControl.c
 OBJECTS = $(SOURCES:.c=.o)
 EXECUTABLE = Blinker
 

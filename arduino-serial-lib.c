@@ -38,6 +38,7 @@
 #include <termios.h>  // POSIX terminal control definitions 
 #include <string.h>   // String function definitions 
 #include <sys/ioctl.h>
+#include "colors.h"
 
 // uncomment this to debug reads
 //#define SERIALPORTDEBUG 
@@ -56,7 +57,8 @@ int serialport_init(const char* serialport, int baud)
     fd = open(serialport, O_RDWR | O_NONBLOCK );
     
     if (fd == -1)  {
-        perror("serialport_init: Unable to open port ");
+        fprintf(stderr, "%sERROR%s%s >> %sserialport_init: Unable to open port\n", RED, RESET, GREEN, RESET);
+        
         return -1;
     }
     
@@ -65,7 +67,7 @@ int serialport_init(const char* serialport, int baud)
     //ioctl(fd, TIOCMBIC, &iflags);    // turn off DTR
 
     if (tcgetattr(fd, &toptions) < 0) {
-        perror("serialport_init: Couldn't get term attributes");
+        fprintf(stderr, "%sERROR%s%s >> %sserialport_init: Couldn't get term attributes\n", RED, RESET, GREEN, RESET);
         return -1;
     }
     speed_t brate = baud; // let you override switch below if needed
@@ -109,7 +111,8 @@ int serialport_init(const char* serialport, int baud)
     
     tcsetattr(fd, TCSANOW, &toptions);
     if( tcsetattr(fd, TCSAFLUSH, &toptions) < 0) {
-        perror("init_serialport: Couldn't set term attributes");
+        fprintf(stderr, "%sERROR%s%s >> %sserialport_init: Couldn't get term attributes\n", RED, RESET, GREEN, RESET);
+        
         return -1;
     }
 
@@ -138,7 +141,8 @@ int serialport_write(int fd, const char* str)
     int len = strlen(str);
     int n = write(fd, str, len);
     if( n!=len ) {
-        perror("serialport_write: couldn't write whole string\n");
+        fprintf(stderr, "%sERROR%s%s >> %sserialport_write: couldn't write whole string\n", RED, RESET, GREEN, RESET);
+        
         return -1;
     }
     return 0;
