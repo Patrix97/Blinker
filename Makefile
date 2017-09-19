@@ -22,5 +22,4 @@ clean: cleanobj
 
 cleanobj:
 	rm *.o
-	rm *.c
-	rm *.h
+	

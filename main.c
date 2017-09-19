@@ -22,6 +22,9 @@
 #include "colors.h"
 
 
+/*
+ * Diverse Variablen
+ */
 
 const char* port = "/dev/ttys0"; //Actually just for testing
 int fd;
@@ -31,11 +34,16 @@ struct dirent *dirzeiger;
 char* wd;
 char* fix_folder;
 
+/*
+ *  Initialization of the program
+ */
 int init(){
     
+    system("clear");
     int wd1 = swd();
     int wd2 = cwd();
     wd = ret_wd();
+
     printf("%sINIT%s %s>>%s Working directory: %s\n", BLUE, RESET, GREEN, RESET, wd);
     fix_folder = wd;
     fix_folder = strcat(wd, "/Fixtures");
@@ -46,6 +54,16 @@ int init(){
 
     return wd1 == 1 || wd2 == 1 ? 1 : 0;
 }
+
+
+//
+//
+//
+/* MAIN */
+//
+//
+//
+
 
 int main(int argc, const char * argv[]) {
     if(init() != 0){
@@ -103,36 +121,7 @@ int main(int argc, const char * argv[]) {
             /* Load a Fixture */
             case 'l':
                 
-                
-                ArrayList_clear(fix_list);
-                if((dir = opendir(fix_folder)) != NULL){
-                    while((dirzeiger=readdir(dir)) != NULL){
-                        /* Skipping the "unimportant" files */
-                        if(strcmp((*dirzeiger).d_name, ".")){
-                            continue;
-                        }
-
-                        if(strcmp((*dirzeiger).d_name, "..")){
-                            continue;
-                        }
-
-                        if(strcmp((*dirzeiger).d_name, ".DS_Store")){
-                            continue;
-                        }
-
-                        add(fix_list, (*dirzeiger).d_name);
-                    }
-                    
-                    for(int i = 0; i < getSizeOf(fix_list); i++){
-                        char* entry = (char*)ArrayList_get(fix_list, i);
-                        if(entry != NULL){
-                            printf("%i: %s\n", i, entry);
-                        }else{
-                            break;
-                        }
-                        
-                    }
-                }
+                printf("Will be implemented soon\n");
                 
                 break;
 
@@ -152,5 +141,6 @@ int main(int argc, const char * argv[]) {
         }
     }
     
-        return 0;
+    free(fix_list);
+    return 0;
 }
