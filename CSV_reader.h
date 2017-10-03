@@ -15,7 +15,9 @@
 
 
 
-
+int open_csv(char* filename);
 const char* get_field(char* line, int number);
-
+int get_number_lines();
+void get_array_from_field(int field, int* a, int* b);
+void rev();
 #endif /* CSV_reader_h */
